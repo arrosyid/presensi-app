@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Presensi;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DateTime;
+
 date_default_timezone_set("Asia/Jakarta");
 
 class PresensiController extends Controller
@@ -47,6 +49,15 @@ class PresensiController extends Controller
         $presensi = Presensi::whereDate('tanggal', '=', date('Y-m-d'))
                         ->where('user_id', Auth::user()->id)
                         ->first();
+        $hour_part = '00:00';
+        $format = 'H:i';
+        $datetime = DateTime::createFromFormat($format, $hour_part);
+        // echo "Format: $format; " . $datetime->format('H:i:s') . "\n";
+        // $interval = $datetime->diff(new DateTime());
+
+        // fitur foto
+        // fitur rekam lokasi terkini
+        // fitur ditambahkan beberapa fitur presensi polije
         if ($presensi == null) {
             $presensi = Presensi::create([
                 'user_id' => Auth::user()->id,
@@ -54,6 +65,7 @@ class PresensiController extends Controller
                 'longitude' => $request->longitude,
                 'tanggal' => date('Y-m-d'),
                 'masuk' => date('H:i:s'),
+                'pulang' => $datetime->format('H:i:s'),
             ]);
         } else {
             $data = [
