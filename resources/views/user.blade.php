@@ -4,28 +4,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+            <a href="{{url('create-user')}}" type="button" class="btn btn-info mb-2">+ Tambah User</a>
             <div class="card">
-                <div class="card-header">Rekap Presensi</div>
+                <div class="card-header">Daftar User</div>
                 
                 <div class="card-body">
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>Nama</th>
-                            <th>Waktu</th>
-                            <th>Masuk</th>
-                            <th>Pulang</th>
-                            <th>Lokasi (Latitude, Longitude)</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($presensis as $item)
+                        @foreach($users as $item)
                         <tr>
                             <td>{{$item->name}}</td>
-                            <td>{{$item->tanggal}}</td>
-                            <td>{{$item->masuk}}</td>
-                            <td>{{$item->pulang}}</td>
-                            <td>{{$item->latitude}}, {{$item->longitude}}</td>
+                            <td>{{$item->email}}</td>
                         </tr>
                         @endforeach
                     </tbody>
