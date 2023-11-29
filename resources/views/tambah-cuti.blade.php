@@ -5,12 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Daftar User</div>
+                <div class="card-header">Tambahkan Cuti</div>
 
                 <div class="card-body">
-                    <form method="POST"  action="{{ url('store-user') }}" enctype="multipart/form-data">
+                    <form method="POST"  action="{{ url('tambah-cuti') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
+                            <input type="hidden" value="{{ $ }}">
                             <label for="exampleInputEmail1">Nama</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
                                 @error('name')

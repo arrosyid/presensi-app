@@ -6,7 +6,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">Rekap Presensi</div>
-                
+
                 <div class="card-body">
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
@@ -33,12 +33,9 @@
                 </div>
             </div>
         </div>
-       
-        
     </div>
 </div>
 <script type="text/javascript" class="init">
-	
 
 $(document).ready(function () {
 	var table = $('#example').DataTable( {
