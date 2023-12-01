@@ -27,9 +27,16 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $presensi = Presensi::select('presensi.*', 'users.name')
+        if(Auth::user()->type == 'admin'){
+            $presensi = Presensi::select('presensi.*', 'users.name')
                         ->join('users', 'presensi.user_id', '=', 'users.id')
                         ->get();
+        }else if(Auth::user()->type == 'user'){
+            $presensi = Presensi::select('presensi.*', 'users.name')
+                            ->join('users', 'presensi.user_id', '=', 'users.id')
+                            ->where('users.name', '=', Auth::user()->name)
+                            ->get();
+        }
         foreach($presensi as $item) {
             $datetime = Carbon::parse($item->tanggal)->locale('id');
 

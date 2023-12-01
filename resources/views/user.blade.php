@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <a href="{{url('create-user')}}" type="button" class="btn btn-info mb-2">+ Tambah User</a>
+            <a href="{{route('create-user')}}" type="button" class="btn btn-info mb-2">+ Tambah User</a>
             <div class="card">
                 <div class="card-header">Daftar User</div>
-                
+
                 <div class="card-body">
                 <table id="example" class="table table-striped" style="width:100%">
                     <thead>
@@ -28,12 +28,12 @@
                 </div>
             </div>
         </div>
-       
-        
+
+
     </div>
 </div>
 <script type="text/javascript" class="init">
-	
+
 
 $(document).ready(function () {
 	var table = $('#example').DataTable( {

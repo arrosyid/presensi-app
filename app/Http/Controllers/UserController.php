@@ -22,36 +22,32 @@ class UserController extends Controller
         ]);
     }
 
-    function create()
+    function create(Request $request)
     {
         return view('create-user');
     }
 
     function store(Request $request)
     {
-        // $validator = Validator::make($request->all(),[
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:8'
-        // ]);
-        $validator = $request->validate([
+        $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8'
+            'password' => 'required|string|min:8|confirmed',
+            'type' => 'required',
+            'password_confirmation' => 'required|string|min:8'
         ]);
 
-        // if($validator->fails()){
-        //     return response()->json($validator->errors());
-        // }
-
+        if($validator->fails()){
+            // return response()->json($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
+        }
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'type' => $request->type,
             'password' => Hash::make($request->password),
         ]);
 
-
-        // return redirect()->route('user');
-        return redirect()->action('App\Http\Controllers\UserController@index');
+        return redirect()->route('user');
     }
 }
