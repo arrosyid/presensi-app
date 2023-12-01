@@ -20,10 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::middleware(['auth', 'checkrole:admin'])->group(function () {
+    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+    Route::get('user/create-user', [App\Http\Controllers\UserController::class, 'create'])->name('create-user');
+    Route::post('user/store-user', [App\Http\Controllers\UserController::class, 'store'])->name('user-store');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-Route::get('/create-user', [App\Http\Controllers\UserController::class, 'create'])->name('user');
-Route::post('/store-user', [App\Http\Controllers\UserController::class, 'store'])->name('user-store');
 
 // untuk pengajuan cuti
 Route::get('/cuti', [App\Http\Controllers\CutiController::class, 'index'])->name('cuti');

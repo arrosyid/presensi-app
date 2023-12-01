@@ -26,8 +26,8 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
-    
-    
+
+
 </head>
 <body>
     <div id="app">
@@ -68,8 +68,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->type == 'admin')
                                     <a class="dropdown-item" href="{{url('user')}}">Daftar User</a>
-                                    
+                                    @endif
+
                                     <a class="dropdown-item" href="{{url('home')}}">Rekap Presensi</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

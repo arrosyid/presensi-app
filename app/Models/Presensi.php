@@ -9,7 +9,7 @@ class Presensi extends Model
 {
     use HasFactory;
 
-    protected $table = 'presensis';
+    protected $table = 'presensi';
 
     /**
      * The attributes that are mass assignable.

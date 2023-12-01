@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Presensi;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,21 +25,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $presensis = Presensi::select('presensis.*', 'users.name')
-                        ->join('users', 'presensis.user_id', '=', 'users.id')
+        $presensi = Presensi::select('presensi.*', 'users.name')
+                        ->join('users', 'presensi.user_id', '=', 'users.id')
                         ->get();
-        foreach($presensis as $item) {
+        foreach($presensi as $item) {
             $datetime = Carbon::parse($item->tanggal)->locale('id');
 
             $datetime->settings(['formatFunction' => 'translatedFormat']);
-            
+
             $item->tanggal = $datetime->format('l, j F Y');
         }
-        // dd($presensis);
+        // dd(Auth::user()->type);
         return view('home', [
-            'presensis' => $presensis
+            'presensis' => $presensi
         ]);
     }
 }

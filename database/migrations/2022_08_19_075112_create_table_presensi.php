@@ -13,7 +13,7 @@ class CreateTablePresensi extends Migration
      */
     public function up()
     {
-        Schema::create('presensis', function (Blueprint $table) {
+        Schema::create('presensi', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->decimal('latitude', 12,5);
@@ -32,6 +32,6 @@ class CreateTablePresensi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_presensi');
+        Schema::dropIfExists('presensi');
     }
 }
