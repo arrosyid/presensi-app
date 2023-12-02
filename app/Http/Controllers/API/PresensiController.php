@@ -45,7 +45,6 @@ class PresensiController extends Controller
     }
     function savePresensi(Request $request)
     {
-        $keterangan = "";
         $presensi = Presensi::whereDate('tanggal', '=', date('Y-m-d'))
                         ->where('user_id', Auth::user()->id)
                         ->first();
@@ -55,9 +54,7 @@ class PresensiController extends Controller
         // echo "Format: $format; " . $datetime->format('H:i:s') . "\n";
         // $interval = $datetime->diff(new DateTime());
 
-        // fitur foto
         // fitur rekam lokasi terkini
-        // fitur ditambahkan beberapa fitur presensi polije
         if ($presensi == null) {
             $presensi = Presensi::create([
                 'user_id' => Auth::user()->id,
@@ -76,7 +73,7 @@ class PresensiController extends Controller
 
         }
         $presensi = Presensi::whereDate('tanggal', '=', date('Y-m-d'))
-                 ->first();
+                ->first();
 
         return response()->json([
             'success' => true,

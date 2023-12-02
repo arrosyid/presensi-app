@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\PresensiController;
+use App\Http\Controllers\API\ApiCutiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 //API route for login user
-Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //Protecting Routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -29,13 +31,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     // API route for logout user
-    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     // untuk presensi
-    Route::get('/get-presensi',  [App\Http\Controllers\API\PresensiController::class, 'getPresensis']);
-    Route::post('save-presensi', [App\Http\Controllers\API\PresensiController::class, 'savePresensi']);
+    Route::get('/get-presensi',  [PresensiController::class, 'getPresensis']);
+    Route::post('save-presensi', [PresensiController::class, 'savePresensi']);
 
 
     // untuk pengajuan cuti
-    Route::get('/cuti', [App\Http\Controllers\API\ApiCutiController::class, 'index']);
-    Route::post('/pengajuan-cuti', [App\Http\Controllers\API\ApiCutiController::class, 'pengajuanCuti']);
+    Route::get('/cuti', [ApiCutiController::class, 'index']);
+    Route::post('/pengajuan-cuti', [ApiCutiController::class, 'pengajuanCuti']);
 });
