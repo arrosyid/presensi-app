@@ -36,5 +36,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     // untuk pengajuan cuti
+    Route::get('/cuti', [App\Http\Controllers\API\ApiCutiController::class, 'index']);
     Route::post('/pengajuan-cuti', [App\Http\Controllers\API\ApiCutiController::class, 'pengajuanCuti']);
 });

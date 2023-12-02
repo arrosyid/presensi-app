@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>Presensi App</title>
 
 
     <!-- Fonts -->
@@ -71,11 +72,11 @@
                                     @if (Auth::user()->type == 'admin')
                                     <a class="dropdown-item" href="{{url('user')}}">Daftar User</a>
                                     @endif
-
+                                    <a class="dropdown-item" href="{{route('cuti')}}">Rekap Cuti</a>
                                     <a class="dropdown-item" href="{{url('home')}}">Rekap Presensi</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

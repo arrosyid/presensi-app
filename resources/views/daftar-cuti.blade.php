@@ -38,7 +38,7 @@
                 </table>
                 </div>
                 <div class="card-footer">
-                    <a href="{{ url('tambah-cuti'). '/'. $item->id }}" class="btn btn-primary">Tambahkan Cuti</a>
+                    <a href="{{ route('tambah-cuti') }}" class="btn btn-primary">Tambahkan Cuti</a>
                 </div>
             </div>
         </div>
