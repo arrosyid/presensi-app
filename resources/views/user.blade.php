@@ -14,6 +14,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,7 +22,24 @@
                         <tr>
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
+                            <td>
+                            <!-- <a href="{{ url('hapus-user'). '/'. $item->id }}" class="btn btn-success">Hapus</a> -->
+                            
+                            @if ($item->id == Auth::id())
+
+                        @else
+                        <div class="form-button-action">
+                            <form action ="{{ route('user.destroy', encrypt($item->id)) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link btn-danger btn-lg" onclick="return confirm('Hapus User {{ $item->name }} ?')"><i class="bi bi-trash-fill"></i></button>
+                                </form>
+                            </div>
+                            @endif
+                        </td>
                         </tr>
+
+                        
                         @endforeach
                     </tbody>
                 </table>

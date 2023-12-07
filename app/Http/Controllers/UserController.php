@@ -50,4 +50,19 @@ class UserController extends Controller
 
         return redirect()->route('user');
     }
+
+    public function destroy($id){
+        User::destroy(decrypt($id));
+
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        // Alert::success('Berhasil', 'Data Berhasil Dihapus');
+        // $data = User::latest()->get();
+        return redirect()->route('user')->with(['success' => 'user berhasil dihapus!']);
+    }
+
+        
+
+    
 }
