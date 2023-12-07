@@ -20,7 +20,8 @@ class CheckRole
             return $next($request);
         }
 
-        return response()->json(['You do not have permission to access for this page.']);
+        // return response()->json(['You do not have permission to access for this page.']);
+        return abort(403);
         // return redirect('/eror');
         /* return response()->view('errors.check-permission'); */
     }
