@@ -26,16 +26,15 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
     Route::post('/store-user', [App\Http\Controllers\UserController::class, 'store'])->name('store-user');
     // untuk pengajuan cuti
     Route::get('admin/cuti', [App\Http\Controllers\CutiController::class, 'index'])->name('admin.cuti');
-    Route::get('admin/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('admin.tambah-cuti');
-    Route::post('admin/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('admin.store-cuti');
+    // Route::get('admin/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('admin.tambah-cuti');
+    // Route::post('admin/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('admin.store-cuti');
     Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
 });
 
 Route::middleware(['auth', 'checkrole:user'])->group(function () {
     // untuk pengajuan cuti
     Route::get('/cuti', [App\Http\Controllers\CutiController::class, 'index'])->name('cuti');
-    Route::get('/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('tambah-cuti');
-    Route::post('/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('store-cuti');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
-
+Route::get('/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('tambah-cuti');
+Route::post('/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('store-cuti');

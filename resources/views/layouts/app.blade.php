@@ -70,10 +70,10 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->type == 'admin')
-                                    <a class="dropdown-item" href="{{url('user')}}">Daftar User</a>
+                                    <a class="dropdown-item" href="{{route('user')}}">Daftar User</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{route('cuti')}}">Rekap Cuti</a>
-                                    <a class="dropdown-item" href="{{url('home')}}">Rekap Presensi</a>
+                                    <a class="dropdown-item" href="{{Auth::user()->type == 'admin' ? route('admin.cuti') : route('cuti')}}">Rekap Cuti</a>
+                                    <a class="dropdown-item" href="{{ Auth::user()->type == 'admin' ? route('admin.home') : route('home')}}">Rekap Presensi</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
