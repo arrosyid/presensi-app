@@ -8,7 +8,7 @@
                 <div class="card-header">Tambahkan Cuti</div>
 
                 <div class="card-body">
-                    <form method="POST"  action="{{ Auth::user()->type == 'admin' ? route('admin.store-cuti') : route('store-cuti') }}" enctype="multipart/form-data">
+                    <form method="POST"  action="{{ route('store-cuti') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputName1">Nama</label>

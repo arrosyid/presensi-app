@@ -4,7 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <a href="{{route('create-user')}}" type="button" class="btn btn-info mb-2">+ Tambah User</a>
+            @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+            <a href="{{route('user.create')}}" type="button" class="btn btn-info mb-2">+ Tambah User</a>
             <div class="card">
                 <div class="card-header">Daftar User</div>
 
@@ -23,23 +28,18 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
                             <td>
-                            <!-- <a href="{{ url('hapus-user'). '/'. $item->id }}" class="btn btn-success">Hapus</a> -->
-                            
-                            @if ($item->id == Auth::id())
-
-                        @else
-                        <div class="form-button-action">
-                            <form action ="{{ route('user.destroy', encrypt($item->id)) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-link btn-danger btn-lg" onclick="return confirm('Hapus User {{ $item->name }} ?')"><i class="bi bi-trash-fill"></i></button>
+                            @if ($item->id != Auth::id())
+                            <div class="form-button-action">
+                                <form action ="{{ url('user.hapus'). '/'.encrypt($item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus User {{ $item->name }} ?')"><i class="bi bi-trash"></i></button>
                                 </form>
                             </div>
                             @endif
                         </td>
                         </tr>
 
-                        
                         @endforeach
                     </tbody>
                 </table>

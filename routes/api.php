@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\PresensiController;
 use App\Http\Controllers\API\ApiCutiController;
+use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

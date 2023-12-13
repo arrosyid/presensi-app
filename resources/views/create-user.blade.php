@@ -8,7 +8,7 @@
                 <div class="card-header">Daftar User</div>
 
                 <div class="card-body">
-                    <form method="POST"  action="{{ route('store-user') }}" enctype="multipart/form-data">
+                    <form method="POST"  action="{{ route('user.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-group">
                             <label class="form-label" for="exampleInputNama1">Nama</label>

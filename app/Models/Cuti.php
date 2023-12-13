@@ -26,4 +26,9 @@ class Cuti extends Model
         'status',
         'created_at'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'id');
+    }
 }

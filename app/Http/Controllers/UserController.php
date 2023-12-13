@@ -52,9 +52,9 @@ class UserController extends Controller
     }
 
     public function destroy($id){
-        User::destroy(decrypt($id));
+        // User::destroy(decrypt($id));
 
-        $post = Post::findOrFail($id);
+        $post = User::findOrFail(decrypt($id));
         $post->delete();
 
         // Alert::success('Berhasil', 'Data Berhasil Dihapus');
@@ -62,7 +62,4 @@ class UserController extends Controller
         return redirect()->route('user')->with(['success' => 'user berhasil dihapus!']);
     }
 
-        
-
-    
 }

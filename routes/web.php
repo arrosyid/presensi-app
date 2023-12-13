@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CutiController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Models\Cuti;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,20 +25,24 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth', 'checkrole:admin'])->group(function () {
-    Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-    Route::get('/create-user', [App\Http\Controllers\UserController::class, 'create'])->name('create-user');
-    Route::post('/store-user', [App\Http\Controllers\UserController::class, 'store'])->name('store-user');
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('/create-user', [UserController::class, 'create'])->name('user.create');
+    Route::post('/store-user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/hapus-user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
     // untuk pengajuan cuti
-    Route::get('admin/cuti', [App\Http\Controllers\CutiController::class, 'index'])->name('admin.cuti');
-    // Route::get('admin/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('admin.tambah-cuti');
-    // Route::post('admin/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('admin.store-cuti');
-    Route::get('admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
+    Route::get('admin/cuti', [CutiController::class, 'index'])->name('admin.cuti');
+    Route::get('admin/home', [HomeController::class, 'index'])->name('admin.home');
+    Route::get('/edit-cuti/{id}', [CutiController::class, 'edit'])->name('cuti.edit');
+    Route::get('/hapus-cuti/{id}', [CutiController::class, 'destroy'])->name('cuti.hapus');
 });
 
 Route::middleware(['auth', 'checkrole:user'])->group(function () {
     // untuk pengajuan cuti
-    Route::get('/cuti', [App\Http\Controllers\CutiController::class, 'index'])->name('cuti');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/cuti', [CutiController::class, 'index'])->name('cuti');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
-Route::get('/tambah-cuti', [App\Http\Controllers\CutiController::class, 'tambahCuti'])->name('tambah-cuti');
-Route::post('/store-cuti', [App\Http\Controllers\CutiController::class, 'store'])->name('store-cuti');
+// Route::get('/tambah-cuti', [CutiController::class, 'tambahCuti'])->name('cuti.tambahCuti');
+// Route::post('/store-cuti', [CutiController::class, 'store'])->name('cuti.store');
+// Route::get('/update-cuti', [CutiController::class, 'updateCuti'])->name('cuti.update');
+Route::resource('cuti', CutiController::class);
